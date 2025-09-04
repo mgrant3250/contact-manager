@@ -1,0 +1,42 @@
+﻿@model List<Contact>
+
+@{
+    ViewData["Title"] = "My Contacts";
+}
+
+<div class="mb-2">
+    <a asp-controller="Contact" asp-action="Add">Add New Contact</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Category</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <!--foreach loop that displays the first name, last name, phone number, email, and category name of each contact. both the first and last names are links-->
+        @foreach (var contact in Model) {
+            <tr>
+                <td><a asp-controller="Contact" asp-action="Details" 
+                    asp-route-id="@contact.ContactId" 
+                    asp-route-slug="@contact.Slug">@contact.FirstName</a></td>
+                <td>
+                    <a asp-controller="Contact" asp-action="Details"
+                       asp-route-id="@contact.ContactId" 
+                       asp-route-slug="@contact.Slug">@contact.LastName</a>
+                </td>
+                <td>@contact.Phone</td>
+                <td>@contact.Email</td>
+                <td>@contact.Category.Name</td>
+                
+                
+        </tr>
+        }
+    </tbody>
+</table>
